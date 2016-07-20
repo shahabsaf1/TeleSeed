@@ -18,8 +18,8 @@ function on_msg_receive (msg)
 
   local receiver = get_receiver(msg)
   print(receiver)
-  --vardump(msg)
-  --vardump(msg)
+  vardump(msg)
+  vardump(msg)
   msg = pre_process_service_msg(msg)
   if msg_valid(msg) then
     msg = pre_process_msg(msg)
@@ -230,11 +230,12 @@ function create_config( )
     "leave_ban",
 	"supergroup",
 	"whitelist",
-	"msg_checks"
+	"msg_checks",
+"lang"
     },
-    sudo_users = {110626080,103649648,111020322,0,tonumber(our_id)},--Sudo users
+    sudo_users = {119989724},--Sudo users
     moderation = {data = 'data/moderation.json'},
-    about_text = [[Teleseed v4
+    --about_text = [[Teleseed v4
 An advanced administration bot based on TG-CLI written in Lua
 
 https://github.com/SEEDTEAM/TeleSeed
