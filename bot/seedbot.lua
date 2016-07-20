@@ -206,11 +206,21 @@ function load_config( )
   end
   return config
 end
+io.write('\27[1mPlease input your bot API key (token): \27[0;39;49m')
+  local bot_api_key = io.read()
 
--- Create a basic config.json file and saves it.
+  io.write('\n\27[1mPlease input your bot API @username: \27[0;39;49m')
+  local bot_api_uname = io.read()
+  local bot_api_uname = bot_api_uname:gsub('@', '')
+  local bot_api_uid = bot_api_key:match('^%d+')-- Create a basic config.json file and saves it.
 function create_config( )
   -- A simple config with basic plugins and ourselves as privileged user
   config = {
+bot_api = {
+      key = bot_api_key,
+      uid = tonumber(bot_api_uid),
+      uname = bot_api_uname
+    },
     enabled_plugins = {
 	"admin",
     "onservice",
