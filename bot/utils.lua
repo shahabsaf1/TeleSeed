@@ -1229,3 +1229,19 @@ function banall_by_reply(extra, success, result)
   end
 end
 end
+function send_api_msg(msg, receiver, text, disable_web_page_preview, markdown)
+  local url_api = 'https://api.telegram.org/bot'.._config.bot_api.key
+      ..'/sendMessage?chat_id='..receiver..'&text='..URL.escape(text)
+  if disable_web_page_preview == true then
+    url_api = url_api..'&disable_web_page_preview=true'
+  end
+  if markdown == 'md' then
+    url_api = url_api..'&parse_mode=Markdown'
+  elseif markdown == 'html' then
+    url_api = url_api..'&parse_mode=HTML'
+  end
+  local dat, res = https.request(url_api)
+  if res == 400 then
+    reply_msg(msg.id, 'Error 400.\nWhat ever that means...', ok_cb, true)
+  end
+end
