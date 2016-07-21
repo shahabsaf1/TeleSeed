@@ -1245,3 +1245,18 @@ function send_api_msg(msg, receiver, text, disable_web_page_preview, markdown)
     reply_msg(msg.id, 'Error 400.\nWhat ever that means...', ok_cb, true)
   end
 end
+function get_receiver_api(msg)
+  if msg.to.peer_type == 'user' then
+    return msg.from.peer_id
+  end
+  if msg.to.peer_type == 'chat' then
+    return '-'..msg.to.peer_id
+  end
+--TODO testing needed
+-- if msg.to.peer_type == 'encr_chat' then
+--   return msg.to.print_name
+-- end
+  if msg.to.peer_type == 'channel' then
+    return '-100'..msg.to.peer_id
+  end
+end
