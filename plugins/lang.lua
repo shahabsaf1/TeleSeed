@@ -12,12 +12,11 @@ end
 
 if matches[1] == 'setlang' and matches[2] == 'fa' and is_owner(msg) then
 redis:hset(hash,'lang',matches[2])
-        return 'تبریک زیان گروه شما فارسی شد'
+        return 'زبان گروه فارسی شد'
 end
 if matches[1] == 'lang' then
 if group_lang then 
-return "زیان گروه شما فارسی است"
-else
+return "زبان گروه فارسی است"
 return "Group lang : en"
 end
 end
