@@ -236,14 +236,13 @@ local function run(msg,matches)
 	if matches[1] == 'reload' then
 		receiver = get_receiver(msg)
 		reload_plugins(true)
-		post_msg(receiver, "Reloaded!", ok_cb, false)
-		return "Reloaded!"
+		post_msg(receiver, ok_cb, false)
+		return "#Bot Reloaded!"
 	end
-	--[[*For Debug*
 	if matches[1] == "vardumpmsg" and is_admin1(msg) then
 		local text = serpent.block(msg, {comment=false})
 		send_large_msg("channel#id"..msg.to.id, text)
-	end]]
+	end
 	if matches[1] == 'updateid' then
 		local data = load_data(_config.moderation.data)
 		local long_id = data[tostring(msg.to.id)]['long_id']
@@ -283,6 +282,7 @@ return {
   patterns = {
 	"^[#!/](pm) (%d+) (.*)$",
 	"^[#!/](import) (.*)$",
+	"^[#!/](vardumpmsg)$",
 	"^[#!/](pmunblock) (%d+)$",
 	"^[#!/](pmblock) (%d+)$",
 	"^[#!/](markread) (on)$",
